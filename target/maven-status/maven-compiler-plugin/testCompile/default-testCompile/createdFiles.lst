@@ -1,0 +1,3 @@
+org\selenide\pageObjects\IndexPage.class
+org\selenide\pageObjects\MobileIndexPage.class
+org\selenide\DesktopTest.class
