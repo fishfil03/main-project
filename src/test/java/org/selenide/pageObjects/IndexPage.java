@@ -1,10 +1,14 @@
 package org.selenide.pageObjects;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.support.ui.LoadableComponent;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.interactable;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -21,28 +25,30 @@ public class IndexPage extends LoadableComponent<IndexPage> {
     private final SelenideElement enterCodeInput = $(".Wrapper-sc-j59vvk-0.hwwaev");
     private final SelenideElement headingTitle = $("h1");
 
+    public IndexPage() {
+        Configuration.headless = true;
+    }
 
     @Override
     protected void load() {
-        //driver.get("https://www.mtsbank.ru/");
         open("https://www.mtsbank.ru/");
     }
 
     @Override
     protected void isLoaded() throws Error {
-        try{
+        try {
             logo.should(visible);
-        } catch (Exception e){
+        } catch (Exception e) {
             fail();
         }
     }
 
-    public void fillTheFindOutYourPersonalOfferForm(String phoneWithoutCountryCode, String passportSeries, String passportId){
+    public void fillTheFindOutYourPersonalOfferForm(String phoneWithoutCountryCode, String passportSeries, String passportId) {
         phoneNumberInput.should(interactable);
         passportInput.should(interactable);
 
         phoneNumberInput.sendKeys(phoneWithoutCountryCode);
-        passportInput.sendKeys(passportSeries+passportId);
+        passportInput.sendKeys(passportSeries + passportId);
 
         passportInput.submit();
 
