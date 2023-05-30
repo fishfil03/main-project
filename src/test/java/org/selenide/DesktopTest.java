@@ -33,12 +33,11 @@ class DesktopTest {
         indexPage.getEnterCodeInput().should(Condition.visible);
     }
 
-    @ParameterizedTest(name = "{index} - {0} is a link")
-    @ValueSource(strings = {"https://t.me/mts_bank_official", "https://t.me/mts_bank"})
-    public void telegramLeadsToTheOfficialPage(String link) {
+    @Test
+    public void telegramLeadsToTheOfficialPage() {
         indexPage.getTelegramLink().should(Condition.visible);
         String href = indexPage.getTelegramLink().getAttribute("href");
-        assertEquals(link, href);
+        assertEquals("https://t.me/mts_bank_official", href);
     }
 
     @Test

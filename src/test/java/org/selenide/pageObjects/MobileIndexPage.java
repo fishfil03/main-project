@@ -5,6 +5,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -27,7 +28,7 @@ public class MobileIndexPage extends LoadableComponent<MobileIndexPage> {
     private final SelenideElement mobileMenu = $(".sc-btdhtl.cduirw, .sc-gqdwHF.ikGRIR");
     private final SelenideElement installMobileApp = $(".sc-hxqEdz.iEOyEl, .sc-btdhtl.iDxvix");
     private final ElementsCollection blocksHeaders = $$(".sc-lgqlnP.hZKtWy h2, .sc-jfJyPD.gDOKcd h2");
-    private final SelenideElement signInLink = $(".LinkWrapper-sc-a7l7fm-0.ktbVkT.sc-cSaENr.fevDBw");
+    private final SelenideElement signInLink = $(By.xpath("//a[text()=\"Войти\"]"));
 
     public MobileIndexPage(){
         Configuration.headless = true;

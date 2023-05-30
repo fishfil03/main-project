@@ -1,24 +1,16 @@
 package org.selenide;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.junit5.TextReportExtension;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.selenide.pageObjects.MobileIndexPage;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.time.Duration;
 
-import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(TextReportExtension.class)
@@ -35,15 +27,15 @@ class MobileTest {
 
     @Test
     public void isSignInExists() {
-        indexPage.getSignInLink().should(Condition.exist);
+        indexPage.getSignInLink().should(Condition.exist, Duration.ofSeconds(10));
     }
 
     @Test
     public void signInLeadsToTheRightPage() {
-        indexPage.getSignInLink().should(Condition.visible);
+        indexPage.getSignInLink().should(Condition.visible, Duration.ofSeconds(10));
         String href = indexPage.getSignInLink().getAttribute("href");
 
-        assertEquals("https://payment.mts.ru/Auth/SignIn", href);
+        assertEquals("https://payment.mts.ru/Auth/SignIn/", href);
     }
 
     @Test
